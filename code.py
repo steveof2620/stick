@@ -8,30 +8,23 @@
 import board
 import neopixel
 import time
+from adafruit_led_animation.animation.blink import Blink
+from adafruit_led_animation.color import RED, YELLOW, ORANGE, GREEN, TEAL, CYAN, BLUE, PURPLE, MAGENTA, WHITE, BLACK, GOLD, PINK, AQUA, JADE, AMBER, OLD_LACE
 
+# on board LEDs
 # pixels = neopixel.NeoPixel(board.NEOPIXEL, 10)
 
 # LED strip is connected to pin A7 so the potentiometer is on pin A3
 strip_pin = board.A7
-strip_num_of_lights = 5
-strip = neopixel.NeoPixel(strip_pin, strip_num_of_lights, brightness = 0.5, auto_write=True)
+strip_num_of_lights = 30
+strip = neopixel.NeoPixel(strip_pin, strip_num_of_lights, brightness=0.5, auto_write=True)
 
-# colour codes RGB
-RED = (255, 0, 0)
-YELLOW = (255, 150, 0)
-GREEN = (0, 255, 0)
-CYAN = (0, 255, 255)
-BLUE = (0, 0, 255)
-PURPLE = (180, 0, 255)
-OFF = (0, 0, 0)
+blink = Blink(strip, speed=0.5, color=JADE)
 
 # an array of colours
-colours = [RED, YELLOW, GREEN, CYAN, BLUE, PURPLE]
+colours = [RED, YELLOW, ORANGE, GREEN, TEAL, CYAN, BLUE, PURPLE, MAGENTA, WHITE, BLACK, GOLD, PINK, AQUA, JADE, AMBER, OLD_LACE]
 
 # infinite loop
 while True:
-    for i in range(len(strip)):
-        strip[i] = colours[i]
-        time.sleep(0.3)
-    strip.fill(OFF)
+    animations.animate()
 
