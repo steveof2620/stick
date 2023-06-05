@@ -15,8 +15,9 @@ from adafruit_led_animation.color import RED, YELLOW, ORANGE, GREEN, TEAL, CYAN,
 # pixels = neopixel.NeoPixel(board.NEOPIXEL, 10)
 
 # LED strip is connected to pin A7 so the potentiometer is on pin A3
+# Number of LEDs on strip is 35
 strip_pin = board.A7
-strip_num_of_lights = 30
+strip_num_of_lights = 35
 strip = neopixel.NeoPixel(strip_pin, strip_num_of_lights, brightness=0.5, auto_write=True)
 
 blink = Blink(strip, speed=0.5, color=JADE)
@@ -26,5 +27,5 @@ colours = [RED, YELLOW, ORANGE, GREEN, TEAL, CYAN, BLUE, PURPLE, MAGENTA, WHITE,
 
 # infinite loop
 while True:
-    animations.animate()
+    blink.animate()
 
