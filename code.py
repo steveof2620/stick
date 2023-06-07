@@ -9,6 +9,7 @@ import board
 import neopixel
 import time
 from analogio import AnalogIn
+from adafruit_simplemath import map_range
 from adafruit_led_animation.animation.blink import Blink
 from adafruit_led_animation.animation.colorcycle import ColorCycle
 from adafruit_led_animation.color import (
@@ -65,7 +66,6 @@ colours = [
     OLD_LACE,
 ]
 
-
 blink = Blink(strip, speed=0.5, color=OLD_LACE)
 colorcycle = ColorCycle(strip, 0.5, colors=colours)
 
@@ -73,5 +73,14 @@ colorcycle = ColorCycle(strip, 0.5, colors=colours)
 while True:
     # blink.animate()
     colorcycle.animate()
-    print((potentiometer.value,))
+    remapped_pot_value = map_range(potentiometer.value, 96, 65535, 0, 1)
+    rounded = round(remapped_pot_value, 1)
+    print(
+        "Raw: ",
+        potentiometer.value,
+        "Mapped: ",
+        remapped_pot_value,
+        "Rounded: ",
+        rounded,
+    )
     time.sleep(0.25)
