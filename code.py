@@ -73,14 +73,13 @@ colorcycle = ColorCycle(strip, 0.5, colors=colours)
 while True:
     # blink.animate()
     colorcycle.animate()
-    remapped_pot_value = map_range(potentiometer.value, 96, 65535, 0, 1)
-    rounded = round(remapped_pot_value, 1)
+    pot_value = round(map_range(potentiometer.value, 100, 65535, 0, 1), 1)
+    # rounded = round(remapped_pot_value, 1)
     print(
         "Raw: ",
         potentiometer.value,
-        "Mapped: ",
-        remapped_pot_value,
         "Rounded: ",
-        rounded,
+        pot_value,
     )
     time.sleep(0.25)
+# Write your code here :-)
