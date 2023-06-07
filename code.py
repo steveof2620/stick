@@ -8,6 +8,7 @@
 import board
 import neopixel
 import time
+from analogio import AnalogIn
 from adafruit_led_animation.animation.blink import Blink
 from adafruit_led_animation.animation.colorcycle import ColorCycle
 from adafruit_led_animation.color import (
@@ -41,6 +42,8 @@ strip = neopixel.NeoPixel(
     strip_pin, strip_num_of_lights, brightness=0.5, auto_write=True
 )
 
+potentiometer = AnalogIn(board.A3)
+
 # an array of colours
 colours = [
     RED,
@@ -70,3 +73,5 @@ colorcycle = ColorCycle(strip, 0.5, colors=colours)
 while True:
     # blink.animate()
     colorcycle.animate()
+    print((potentiometer.value,))
+    time.sleep(0.25)
