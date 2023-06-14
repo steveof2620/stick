@@ -1,85 +1,27 @@
-# First test for the on board LEDs
+# Write your code here :-)
+# SPDX-FileCopyrightText: 2018 Kattni Rembor for Adafruit Industries
+#
+# SPDX-License-Identifier: MIT
 
-# Conventions
-# constants, ALL_CAPS
-# Class names, UpperCamelCase
-# Vairable, lower case
-
+import time
 import board
 import neopixel
-import time
 from analogio import AnalogIn
 from adafruit_simplemath import map_range
-from adafruit_led_animation.animation.blink import Blink
-from adafruit_led_animation.animation.colorcycle import ColorCycle
-from adafruit_led_animation.color import (
-    RED,
-    YELLOW,
-    ORANGE,
-    GREEN,
-    TEAL,
-    CYAN,
-    BLUE,
-    PURPLE,
-    MAGENTA,
-    WHITE,
-    BLACK,
-    GOLD,
-    PINK,
-    AQUA,
-    JADE,
-    AMBER,
-    OLD_LACE,
-)
 
-# on board LEDs
-# pixels = neopixel.NeoPixel(board.NEOPIXEL, 10)
+NUMPIXELS = 10  # Circuit Playground Express has 10 pixels
+pixels = neopixel.NeoPixel(board.NEOPIXEL, NUMPIXELS, auto_write=False)  # CPX NeoPixels
+potentiometer = AnalogIn(board.A1)  # potentiometer connected to A1, power & ground
 
-# LED strip is connected to pin A7 so the potentiometer is on pin A3
-# Number of LEDs on strip is 35
-strip_pin = board.A7
-strip_num_of_lights = 35
-strip = neopixel.NeoPixel(
-    strip_pin, strip_num_of_lights, brightness=0.5, auto_write=True
-)
+def show_value(val):            # Show value 0-9 on CPX NeoPixels
+    for i in range(val):
+        pixels[i] = (50, 0, 0)  # Red
+    for i in range(val, NUMPIXELS):
+        pixels[i] = (0, 0, 0)
+    pixels.show()
 
-potentiometer = AnalogIn(board.A3)
-
-# an array of colours
-colours = [
-    RED,
-    YELLOW,
-    ORANGE,
-    GREEN,
-    TEAL,
-    CYAN,
-    BLUE,
-    PURPLE,
-    MAGENTA,
-    WHITE,
-    BLACK,
-    GOLD,
-    PINK,
-    AQUA,
-    JADE,
-    AMBER,
-    OLD_LACE,
-]
-
-blink = Blink(strip, speed=0.5, color=OLD_LACE)
-colorcycle = ColorCycle(strip, 0.5, colors=colours)
-
-# infinite loop
 while True:
-    # blink.animate()
-    colorcycle.animate()
-    pot_value = round(map_range(potentiometer.value, 100, 65535, 0, 1), 1)
-    # rounded = round(remapped_pot_value, 1)
-    print(
-        "Raw: ",
-        potentiometer.value,
-        "Rounded: ",
-        pot_value,
-    )
-    time.sleep(0.25)
-# Write your code here :-)
+    remapped_value = int(map_range(potentiometer.value, 0, 65520, 0, 100))
+    show_value(int(potentiometer.value / 65520 * NUMPIXELS))  # Show on NeoPixels
+    print((potentiometer.value,))# Print value
+    print ((remapped_value,))
