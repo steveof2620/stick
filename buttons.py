@@ -34,7 +34,6 @@ while True:
             lit_pixels += 1
         else:
             pixels.fill(BLACK)
-            # press_count_A = 0
             lit_pixels = 1
             pixels[0] = BLUE
     elif button_B.pressed:
