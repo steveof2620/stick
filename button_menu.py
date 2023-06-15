@@ -24,6 +24,30 @@ RED = (255, 0, 0)
 lit_pixels = 1
 pixels[0] = BLUE
 
+def select_option(option_selected):
+    if option_selected == 1:
+        print(f"lit pixels is {option_selected} - option one selected")
+    elif option_selected == 2:
+        print (f"lit pixels is {option_selected} - option two selected")
+    elif option_selected == 3:
+        print (f"lit pixels is {option_selected} - option three selected")
+    elif option_selected == 4:
+        print (f"lit pixels is {option_selected} - option four selected")
+    elif option_selected == 5:
+        print (f"lit pixels is {option_selected} - option five selected")
+    elif option_selected == 6:
+        print (f"lit pixels is {option_selected} - option six selected")
+    elif option_selected == 7:
+        print (f"lit pixels is {option_selected} - option seven selected")
+    elif option_selected == 8:
+        print (f"lit pixels is {option_selected} - option eight selected")
+    elif option_selected == 9:
+        print (f"lit pixels is {option_selected} - option nine selected")
+    elif option_selected == 10:
+        print (f"lit pixels is {option_selected} - option ten selected")
+
+select_option(lit_pixels)
+
 while True:
     # ensure the buttons are updated before checking the state.
     button_A.update()
@@ -36,29 +60,10 @@ while True:
             pixels.fill(BLACK)
             lit_pixels = 1
             pixels[lit_pixels - 1] = BLUE
+        select_option(lit_pixels)
     elif button_B.pressed:
         if lit_pixels > 1:
             pixels[lit_pixels - 1] = (BLACK)
             lit_pixels = lit_pixels - 1
+        select_option(lit_pixels)
 
-    # which option has been pressed
-    if lit_pixels == 1:
-        print(f"lit pixels is {lit_pixels} - option one selected")
-    elif lit_pixels == 2:
-        print (f"lit pixels is {lit_pixels} - option two selected")
-    elif lit_pixels == 3:
-        print (f"lit pixels is {lit_pixels} - option three selected")
-    elif lit_pixels == 4:
-        print (f"lit pixels is {lit_pixels} - option four selected")
-    elif lit_pixels == 5:
-        print (f"lit pixels is {lit_pixels} - option five selected")
-    elif lit_pixels == 6:
-        print (f"lit pixels is {lit_pixels} - option six selected")
-    elif lit_pixels == 7:
-        print (f"lit pixels is {lit_pixels} - option seven selected")
-    elif lit_pixels == 8:
-        print (f"lit pixels is {lit_pixels} - option eight selected")
-    elif lit_pixels == 9:
-        print (f"lit pixels is {lit_pixels} - option nine selected")
-    elif lit_pixels == 10:
-        print (f"lit pixels is {lit_pixels} - option ten selected")
