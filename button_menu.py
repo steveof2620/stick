@@ -1,4 +1,4 @@
-## See Better Buttons with Debouncing:
+# See Better Buttons with Debouncing:
 # https://www.youtube.com/watch?v=RJamQZMya0ghttps://www.youtube.com/watch?v=RJamQZMya0g
 
 import board
@@ -41,3 +41,24 @@ while True:
             pixels[lit_pixels - 1] = (BLACK)
             lit_pixels = lit_pixels - 1
 
+    # which option has been pressed
+    if lit_pixels == 1:
+        print(f"lit pixels is {lit_pixels} - option one selected")
+    elif lit_pixels == 2:
+        print (f"lit pixels is {lit_pixels} - option two selected")
+    elif lit_pixels == 3:
+        print (f"lit pixels is {lit_pixels} - option three selected")
+    elif lit_pixels == 4:
+        print (f"lit pixels is {lit_pixels} - option four selected")
+    elif lit_pixels == 5:
+        print (f"lit pixels is {lit_pixels} - option five selected")
+    elif lit_pixels == 6:
+        print (f"lit pixels is {lit_pixels} - option six selected")
+    elif lit_pixels == 7:
+        print (f"lit pixels is {lit_pixels} - option seven selected")
+    elif lit_pixels == 8:
+        print (f"lit pixels is {lit_pixels} - option eight selected")
+    elif lit_pixels == 9:
+        print (f"lit pixels is {lit_pixels} - option nine selected")
+    elif lit_pixels == 10:
+        print (f"lit pixels is {lit_pixels} - option ten selected")
