@@ -1,4 +1,4 @@
-# See Better Buttons with Debouncing:
+## See Better Buttons with Debouncing:
 # https://www.youtube.com/watch?v=RJamQZMya0ghttps://www.youtube.com/watch?v=RJamQZMya0g
 
 import board
@@ -21,24 +21,24 @@ BLACK = (0, 0, 0)
 BLUE = (0, 0, 255)
 RED = (255, 0, 0)
 
-press_count_A = 0
-press_count_B = 0
+lit_pixels = 1
+pixels[0] = BLUE
 
 while True:
     # ensure the buttons are updated before checking the state.
     button_A.update()
     button_B.update()
-
     if button_A.pressed:
-        press_count_A += 1
-        # print with 'f' statement to allow for parsing of values within {}
-        print(f"Button A press {press_count_A} times")
-        pixels.fill(RED)
-    elif button_A.released:
-        pixels.fill(BLACK)
+        if lit_pixels < 10:
+            pixels[lit_pixels] = BLUE
+            lit_pixels += 1
+        else:
+            pixels.fill(BLACK)
+            # press_count_A = 0
+            lit_pixels = 1
+            pixels[0] = BLUE
     elif button_B.pressed:
-        press_count_B += 1
-        print(f"Button B press {press_count_B} times")
-        pixels.fill(BLUE)
-    elif button_B.released:
-        pixels.fill(BLACK)
+        if lit_pixels > 1:
+            pixels[lit_pixels - 1] = (BLACK)
+            lit_pixels = lit_pixels - 1
+
