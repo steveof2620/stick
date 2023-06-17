@@ -5,6 +5,8 @@ import board
 import neopixel
 import digitalio
 from adafruit_debouncer import Button
+from analogio import AnalogIn
+from adafruit_simplemath import map_range
 
 # libaries for animations
 from adafruit_led_animation.animation.colorcycle import ColorCycle
@@ -62,6 +64,12 @@ button_B_input = digitalio.DigitalInOut(board.BUTTON_B)
 button_B_input.switch_to_input(digitalio.Pull.DOWN)
 button_B = Button(button_B_input, value_when_pressed=True)
 
+
+# potentiometer reads from 0 to 65535
+# potentiometer connected to A1, power (3.3v) & ground
+potentiometer = AnalogIn(board.A1)
+POT_MAX_VALUE = 65535
+
 strip_pin = board.A6
 strip_num_of_lights = 35
 
@@ -70,8 +78,8 @@ pixel_strip = neopixel.NeoPixel(
     strip_pin, strip_num_of_lights, brightness=0.5, auto_write=True
 )
 
-#for the menu buttons
-pixels = neopixel.NeoPixel(board.NEOPIXEL, 10)
+# for the menu buttons
+pixels = neopixel.NeoPixel(board.NEOPIXEL, 10, brightness=0.5)
 
 # for option one
 colorcycle = ColorCycle(pixel_strip, speed=0.5, colors=colours)
@@ -136,6 +144,12 @@ def select_option(option_selected):
 selected_option = select_option(lit_pixels)
 
 while True:
+
+    # mapping the potentiometer value to the led brightness (0.1 to 1.0)
+    mapped_value = round(map_range(potentiometer.value, 0, POT_MAX_VALUE, 0.1, 1.0), 1)
+    pixels.brightness = mapped_value
+    # print((mapped_value,))
+
     # ensure the buttons are updated before checking the state.
     button_A.update()
     button_B.update()
